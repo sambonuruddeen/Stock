@@ -373,12 +373,19 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title"><i class="glyphicon glyphicon-barcode"></i> Product Barcode</h4>
       </div>
-      <div class="modal-body">
+      		<div class="modal-body">
+      		
 
-      	      </div>
-      <div class="modal-footer barCodeFooter">
+	      	<div id="div-result">
+
+      		
+      	</div>
+
+
+      	    </div>
+      <div class="modal-footer barcodeFooter">
         <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Close</button>
-        <button type="button" class="btn btn-primary" id="barcodeModalBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-print"></i> Print Barcode</button>
+        <button type="button" class="btn btn-primary" id="barCodeModalBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-print"></i> Print Barcode</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

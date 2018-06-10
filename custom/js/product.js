@@ -538,6 +538,18 @@ function removeProduct(productId = null) {
 	} // /if productid
 } // /remove product function
 
+function generateBarcode(productId=null) {
+	if(productId) {
+
+
+		//load Generate Barcode 
+
+	$('#div-result').load('php_action/generateBarcode.php', {productId: productId});
+
+}
+	 //if productid
+	} // generate barcode function
+
 function clearForm(oForm) {
 	// var frm_elements = oForm.elements;									
 	// console.log(frm_elements);
@@ -567,3 +579,4 @@ function clearForm(oForm) {
 	//     } // /switch
 	// 	} // for
 }
+

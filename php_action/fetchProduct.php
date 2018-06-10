@@ -35,7 +35,9 @@ if($result->num_rows > 0) {
 	  </button>
 	  <ul class="dropdown-menu">
 	    <li><a type="button" data-toggle="modal" id="editProductModalBtn" data-target="#editProductModal" onclick="editProduct('.$productId.')"> <i class="glyphicon glyphicon-edit"></i> Edit</a></li>
-	    <li><a type="button" data-toggle="modal" data-target="#barCodeModal" id="barcodeModalBtn" onclick="barcode('.$productId.')"> <i class="glyphicon glyphicon-barcode"></i> Barcode</a></li>
+
+	    <li><a type="button" data-toggle="modal" data-target="#barCodeModal" id="barCodeModalBtn" onclick="generateBarcode('.$productId.')"> <i class="glyphicon glyphicon-barcode"></i> Barcode</a></li>
+
 	    <li><a type="button" data-toggle="modal" data-target="#removeProductModal" id="removeProductModalBtn" onclick="removeProduct('.$productId.')"> <i class="glyphicon glyphicon-trash"></i> Remove</a></li>       
 	  </ul>
 	</div>';

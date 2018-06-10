@@ -47,7 +47,7 @@
       </button>
       <!-- <a class="navbar-brand" href="#">Brand</a> -->
     </div>
-
+<div class="title"> <span class="main">TARKUNYA VENTURES LTD</span> <i>SALES RECORD SYSTEM</i></div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">      
 

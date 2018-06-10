@@ -2,7 +2,7 @@
 
 require_once 'core.php';
 
-$sql = "SELECT order_id, order_date, client_name, client_contact, payment_status FROM orders WHERE order_status = 1";
+$sql = "SELECT order_id, order_date, client_name, client_contact, payment_status, paid, due FROM orders WHERE order_status = 1";
 $result = $connect->query($sql);
 
 
@@ -27,6 +27,8 @@ if($result->num_rows > 0) {
  		$paymentStatus = "<label class='label label-success'>Full Payment</label>";
  	} else if($row[4] == 2) { 		
  		$paymentStatus = "<label class='label label-info'>Advance Payment</label>";
+ 	} else if($row[4] == 3) { 		
+ 		$paymentStatus = "<label class='label label-info'>Part Payment</label>";
  	} else { 		
  		$paymentStatus = "<label class='label label-warning'>No Payment</label>";
  	} // /else
@@ -55,8 +57,12 @@ if($result->num_rows > 0) {
  		// client name
  		$row[2], 
  		// client contact
- 		$row[3], 		 	
- 		$itemCountRow, 		 	
+ 		//$row[3], 		 	
+ 		$itemCountRow,
+ 		// paid
+ 		$row[5],
+ 		// due
+ 		$row[6],
  		$paymentStatus,
  		// button
  		$button 		
