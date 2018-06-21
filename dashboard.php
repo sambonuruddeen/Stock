@@ -88,15 +88,11 @@ $connect->close();
 
 		<div class="card">
 		  <div class="cardHeader" style="background-color:#245580;">
-		    <h1><?php if($totalRevenue) {
-		    	echo $totalRevenue;
-		    	} else {
-		    		echo '0';
-		    		} ?></h1>
+		    <i class="glyphicon glyphicon-cloud-upload"></i>
 		  </div>
 
 		  <div class="cardContainer">
-		    <p> <i class="glyphicon glyphicon-usd"></i> Total Revenue</p>
+		    <p> <i class="glyphicon glyphicon-file"></i> Backup Database</p>
 		  </div>
 		</div> 
 

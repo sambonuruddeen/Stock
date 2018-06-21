@@ -6,6 +6,7 @@ $valid['success'] = array('success' => false, 'messages' => array());
 
 if($_POST) {	
 
+
 	$productNumber		= $_POST['productNumber'];
 	$productName 		= $_POST['productName'];
   // $productImage 	= $_POST['productImage'];
@@ -14,6 +15,7 @@ if($_POST) {
   $brandName 			= $_POST['brandName'];
   $categoryName 	= $_POST['categoryName'];
   $productStatus 	= $_POST['productStatus'];
+  $productBarcode	= $_POST['barcode'];
 
 	$type = explode('.', $_FILES['productImage']['name']);
 	$type = $type[count($type)-1];		
@@ -28,6 +30,8 @@ if($_POST) {
 				if($connect->query($sql) === TRUE) {
 					$valid['success'] = true;
 					$valid['messages'] = "Successfully Added";	
+
+
 				} else {
 					$valid['success'] = false;
 					$valid['messages'] = "Error while adding the members";

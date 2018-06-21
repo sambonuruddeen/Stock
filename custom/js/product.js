@@ -13,6 +13,7 @@ $(document).ready(function() {
 	$("#addProductModalBtn").unbind('click').bind('click', function() {
 		// // product form reset
 		$("#submitProductForm")[0].reset();		
+		
 
 		// remove text-error 
 		$(".text-danger").remove();
@@ -34,7 +35,8 @@ $(document).ready(function() {
 		    defaultPreviewContent: '<img src="assests/images/photo_default.png" alt="Profile Image" style="width:100%;">',
 		    layoutTemplates: {main2: '{preview} {remove} {browse}'},								    
 	  		allowedFileExtensions: ["jpg", "png", "gif", "JPG", "PNG", "GIF"]
-			});   
+			});
+
 
 		// submit product form
 		$("#submitProductForm").unbind('submit').bind('submit', function() {
@@ -130,6 +132,7 @@ $(document).ready(function() {
 			}	// /else
 
 			if(productImage && productNumber && productName && quantity && rate && brandName && categoryName && productStatus) {
+				
 				// submit loading button
 				$("#createProductBtn").button('loading');
 
@@ -541,14 +544,17 @@ function removeProduct(productId = null) {
 function generateBarcode(productId=null) {
 	if(productId) {
 
-
+	
 		//load Generate Barcode 
 
-	$('#div-result').load('php_action/generateBarcode.php', {productId: productId});
+	$('#div-result').load('php_action/generateBarcode.php #bcd', {productId: productId});
+	
+	$.get("barcodePrint.php", {productId: productId});
 
 }
 	 //if productid
 	} // generate barcode function
+
 
 function clearForm(oForm) {
 	// var frm_elements = oForm.elements;									

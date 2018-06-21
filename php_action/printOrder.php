@@ -34,7 +34,7 @@ $orderItemResult = $connect->query($orderItemSql);
 			<th colspan="5">
 
 			<center>
-				Order Date : '.$orderDate.'
+				Sale Date : '.$orderDate.'
 				<center>Client Name : '.$clientName.'</center>
 				Contact : '.$clientContact.'
 			</center>		
@@ -49,7 +49,7 @@ $orderItemResult = $connect->query($orderItemSql);
 		<tr>
 			<th>S.no</th>
 			<th>Product</th>
-			<th>Rate</th>
+			<th>Price</th>
 			<th>Quantity</th>
 			<th>Total</th>
 		</tr>';
@@ -82,7 +82,7 @@ $orderItemResult = $connect->query($orderItemSql);
 		</tr>
 
 		<tr>
-			<th>VAT (13%)</th>
+			<th>VAT (0%)</th>
 			<th>'.$vat.'</th>			
 		</tr>
 

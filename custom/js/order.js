@@ -13,7 +13,7 @@ $(document).ready(function() {
 		$('#topNavAddOrder').addClass('active');	
 
 		// order date picker
-		$("#orderDate").datepicker();
+		$("#orderDate").datepicker().datepicker("setDate", new Date());
 
 		// create order form function
 		$("#createOrderForm").unbind('submit').bind('submit', function() {
@@ -107,7 +107,7 @@ $(document).ready(function() {
 	   	for (var x = 0; x < quantity.length; x++) {       
 	 			var quantityId = quantity[x].id;
 		    if(quantity[x].value == ''){	    	
-		    	$("#"+quantityId+"").after('<p class="text-danger"> Product Name Field is required!! </p>');
+		    	$("#"+quantityId+"").after('<p class="text-danger"> Product Quantity Field is required!! </p>');
 		    	$("#"+quantityId+"").closest('.form-group').addClass('has-error');	    		    		    	
 	      } else {      	
 		    	$("#"+quantityId+"").closest('.form-group').addClass('has-success');	    		    		    		    	
@@ -147,7 +147,7 @@ $(document).ready(function() {
 								$(".success-messages").html('<div class="alert alert-success">'+
 	            	'<button type="button" class="close" data-dismiss="alert">&times;</button>'+
 	            	'<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
-	            	' <br /> <br /> <a type="button" onclick="printOrder('+response.order_id+')" class="btn btn-primary"> <i class="glyphicon glyphicon-print"></i> Print </a>'+
+	            	' <br /> <br /> <a type="button" onclick="receipt('+response.order_id+')" class="btn btn-primary"> <i class="glyphicon glyphicon-print"></i> Print </a>'+
 	            	'<a href="orders.php?o=add" class="btn btn-default" style="margin-left:10px;"> <i class="glyphicon glyphicon-plus-sign"></i> Add New Order </a>'+
 	            	
 	   		       '</div>');
@@ -276,7 +276,7 @@ $(document).ready(function() {
 	   	for (var x = 0; x < quantity.length; x++) {       
 	 			var quantityId = quantity[x].id;
 		    if(quantity[x].value == ''){	    	
-		    	$("#"+quantityId+"").after('<p class="text-danger"> Product Name Field is required!! </p>');
+		    	$("#"+quantityId+"").after('<p class="text-danger"> Product Quantity Field is required!! </p>');
 		    	$("#"+quantityId+"").closest('.form-group').addClass('has-error');	    		    		    	
 	      } else {      	
 		    	$("#"+quantityId+"").closest('.form-group').addClass('has-success');	    		    		    		    	
@@ -353,7 +353,7 @@ function printOrder(orderId = null) {
 			success:function(response) {
 				
 				var mywindow = window.open('', 'Stock Management System', 'height=400,width=600');
-        mywindow.document.write('<html><head><title>Order Invoice</title>');        
+        mywindow.document.write('<html><head><title>Sale Invoice</title>');        
         mywindow.document.write('</head><body>');
         mywindow.document.write(response);
         mywindow.document.write('</body></html>');
@@ -369,8 +369,16 @@ function printOrder(orderId = null) {
 	} // /if orderId
 } // /print order function
 
-function addRow() {
-	$("#addRowBtn").button("loading");
+//print receipt function
+function receipt(orderId = null) {
+
+	$.get("receipt.php", {orderId: orderId});
+
+}//print receipt function
+
+
+function addRow(search=null) {
+	//$("#addRowBtn").button("loading");
 
 	var tableLength = $("#productTable tbody tr").length;
 
@@ -389,35 +397,37 @@ function addRow() {
 		count = 1;
 		arrayNumber = 0;
 	}
+$( ).ready(function() {
 
+	/*if (search) {
+            $().ready( getProductData(search));
+        } else { alert('error');}*/
 	$.ajax({
-		url: 'php_action/fetchProductData.php',
+		url: 'php_action/fetchSelectedBarcode.php',
 		type: 'post',
+		data: {barcode: search},
 		dataType: 'json',
 		success:function(response) {
-			$("#addRowBtn").button("reset");			
+			//$("#addRowBtn").button("reset");
 
+			if(response != "") {
+			setTimeout( function() { $( '#quantity' ).focus() }, 500 );
+			//alert(response);
+			//$("#quantity"+row).val(1);
+	
 			var tr = '<tr id="row'+count+'" class="'+arrayNumber+'">'+			  				
 				'<td>'+
-					'<div class="form-group">'+
-
-					'<select class="form-control" name="productName[]" id="productName'+count+'" onchange="getProductData('+count+')" >'+
-						'<option value="">~~SELECT~~</option>';
-						// console.log(response);
-						$.each(response, function(index, value) {
-							tr += '<option value="'+value[0]+'">'+value[1]+'</option>';							
-						});
-													
-					tr += '</select>'+
+					'<input type="text" name="prodN[]" id="prodN'+count+'" value="'+response.product_name+'" autocomplete="off" disabled="true" class="form-control" />'+
+					'<input type="hidden" name="productName[]" id="productName'+count+'" value="'+response.product_id+'" />'+
 					'</div>'+
 				'</td>'+
 				'<td style="padding-left:20px;"">'+
-					'<input type="text" name="rate[]" id="rate'+count+'" autocomplete="off" disabled="true" class="form-control" />'+
-					'<input type="hidden" name="rateValue[]" id="rateValue'+count+'" autocomplete="off" class="form-control" />'+
+					'<input type="text" name="rate[]" id="rate'+count+'" value="'+response.rate+'" autocomplete="off" disabled="true" class="form-control" />'+
+					'<input type="hidden" name="rateValue[]" id="rateValue'+count+'" value="'+response.rate+'" autocomplete="off" class="form-control" />'+
 				'</td style="padding-left:20px;">'+
 				'<td style="padding-left:20px;">'+
 					'<div class="form-group">'+
-					'<input type="number" name="quantity[]" id="quantity'+count+'" onkeyup="getTotal('+count+')" autocomplete="off" class="form-control" min="1" />'+
+					'<input type="text" name="quantity[]" id="quantity'+count+'" onkeyup="getTotal('+count+')" autocomplete="off" autofocus class="form-control" min="1" />'+
 					'</div>'+
 				'</td>'+
 				'<td style="padding-left:20px;">'+
@@ -434,9 +444,11 @@ function addRow() {
 				$("#productTable tbody").append(tr);
 			}		
 
+		} else {alert("No record found!");}
+
 		} // /success
 	});	// get the product data
-
+});
 } // /add row
 
 function removeProductRow(row = null) {
@@ -451,7 +463,7 @@ function removeProductRow(row = null) {
 }
 
 // select on product data
-function getProductData(row = null) {
+function getProductData(productId = null) {
 	if(row) {
 		var productId = $("#productName"+row).val();		
 		
@@ -554,7 +566,7 @@ function subAmount() {
 	$("#subTotalValue").val(totalSubAmount);
 
 	// vat
-	var vat = (Number($("#subTotal").val())/100) * 13;
+	var vat = (Number($("#subTotal").val())/100) * 0;
 	vat = vat.toFixed(2);
 	$("#vat").val(vat);
 	$("#vatValue").val(vat);

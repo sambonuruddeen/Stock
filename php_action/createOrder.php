@@ -18,9 +18,11 @@ if($_POST) {
   $dueValue 						= $_POST['dueValue'];
   $paymentType 					= $_POST['paymentType'];
   $paymentStatus 				= $_POST['paymentStatus'];
+  $created						= $_SESSION['userId'];
+  $time							= date('Y-m-d H:i:s');
 
 				
-	$sql = "INSERT INTO orders (order_date, client_name, client_contact, sub_total, vat, total_amount, discount, grand_total, paid, due, payment_type, payment_status, order_status) VALUES ('$orderDate', '$clientName', '$clientContact', '$subTotalValue', '$vatValue', '$totalAmountValue', '$discount', '$grandTotalValue', '$paid', '$dueValue', $paymentType, $paymentStatus, 1)";
+	$sql = "INSERT INTO orders (order_date, client_name, client_contact, sub_total, vat, total_amount, discount, grand_total, paid, due, payment_type, payment_status, order_status, created_by, created_at) VALUES ('$orderDate', '$clientName', '$clientContact', '$subTotalValue', '$vatValue', '$totalAmountValue', '$discount', '$grandTotalValue', '$paid', '$dueValue', $paymentType, $paymentStatus, 1, '$created', '$time')";
 	
 	
 	$order_id;

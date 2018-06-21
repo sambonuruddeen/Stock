@@ -43,7 +43,6 @@
 	</div> <!-- /col-md-12 -->
 </div> <!-- /row -->
 
-
 <!-- add product -->
 <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
@@ -52,7 +51,7 @@
     	<form class="form-horizontal" id="submitProductForm" action="php_action/createProduct.php" method="POST" enctype="multipart/form-data">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title"><i class="fa fa-plus"></i> Add Product</h4>
+	        <h4 class="modal-title"><i class="fa fa-plus"></i> Add Product </h4>
 	      </div>
 
 	      <div class="modal-body" style="max-height:450px; overflow:auto;">
@@ -63,6 +62,7 @@
 	        	<label for="productImage" class="col-sm-3 control-label">Product Image: </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
+				    		<input type="hidden" name="barcode" id="barcode">
 					    <!-- the avatar markup -->
 							<div id="kv-avatar-errors-1" class="center-block" style="display:none;"></div>							
 					    <div class="kv-avatar center-block">					        
@@ -141,7 +141,7 @@
 				      </select>
 				    </div>
 	        </div> <!-- /form-group-->					        	         	       
-
+	        	
 	        <div class="form-group">
 	        	<label for="productStatus" class="col-sm-3 control-label">Status: </label>
 	        	<label class="col-sm-1 control-label">: </label>
@@ -381,11 +381,10 @@
       		
       	</div>
 
-
       	    </div>
       <div class="modal-footer barcodeFooter">
         <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Close</button>
-        <button type="button" class="btn btn-primary" id="barCodeModalBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-print"></i> Print Barcode</button>
+        
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

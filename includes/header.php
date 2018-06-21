@@ -31,6 +31,9 @@
   <!-- bootstrap js -->
 	<script src="assests/bootstrap/js/bootstrap.min.js"></script>
 
+  <!-- anysearch -->
+  <link href="barcode/css/anysearch.css" rel="stylesheet">
+  <script src="barcode/js/anysearch.js"></script>
 </head>
 <body>
 
@@ -62,10 +65,10 @@
         <li id="navProduct"><a href="product.php"> <i class="glyphicon glyphicon-ruble"></i> Product </a></li>     
 
         <li class="dropdown" id="navOrder">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-shopping-cart"></i> Orders <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-shopping-cart"></i> Sales <span class="caret"></span></a>
           <ul class="dropdown-menu">            
-            <li id="topNavAddOrder"><a href="orders.php?o=add"> <i class="glyphicon glyphicon-plus"></i> Add Orders</a></li>            
-            <li id="topNavManageOrder"><a href="orders.php?o=manord"> <i class="glyphicon glyphicon-edit"></i> Manage Orders</a></li>            
+            <li id="topNavAddOrder"><a href="orders.php?o=add"> <i class="glyphicon glyphicon-plus"></i> Add Sale</a></li>            
+            <li id="topNavManageOrder"><a href="orders.php?o=manord"> <i class="glyphicon glyphicon-edit"></i> Manage Sales</a></li>            
           </ul>
         </li> 
 

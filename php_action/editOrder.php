@@ -19,9 +19,11 @@ if($_POST) {
   $dueValue 						= $_POST['dueValue'];
   $paymentType 					= $_POST['paymentType'];
   $paymentStatus 				= $_POST['paymentStatus'];
+  $modified						= $_SESSION['userId'];
+  $time							= date('Y-m-d H:i:s');
 
 				
-	$sql = "UPDATE orders SET order_date = '$orderDate', client_name = '$clientName', client_contact = '$clientContact', sub_total = '$subTotalValue', vat = '$vatValue', total_amount = '$totalAmountValue', discount = '$discount', grand_total = '$grandTotalValue', paid = '$paid', due = '$dueValue', payment_type = '$paymentType', payment_status = '$paymentStatus', order_status = 1 WHERE order_id = {$orderId}";	
+	$sql = "UPDATE orders SET order_date = '$orderDate', client_name = '$clientName', client_contact = '$clientContact', sub_total = '$subTotalValue', vat = '$vatValue', total_amount = '$totalAmountValue', discount = '$discount', grand_total = '$grandTotalValue', paid = '$paid', due = '$dueValue', payment_type = '$paymentType', payment_status = '$paymentStatus',modified_by = '$modified', modified_at = '$time', order_status = 1 WHERE order_id = {$orderId}";	
 	$connect->query($sql);
 	
 	$readyToUpdateOrderItem = false;
