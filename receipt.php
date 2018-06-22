@@ -8,7 +8,7 @@ require __DIR__ . '/vendor/mike42/escpos-php/autoload.php';
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 
-try {
+//try {
 
 // Enter the share name for your USB printer here
     $connector = new WindowsPrintConnector("Xprinter_XP-365B");
@@ -44,7 +44,7 @@ $orderItemResult = $connect->query($orderItemSql);
 /* Information for the receipt */
 while($row = $orderItemResult->fetch_array()) {     
 
-$items[] =  new item($row[4], $row[1]);
+$items =  array(new item($row[4], $row[1]));
 
 }
 
@@ -134,6 +134,6 @@ class item
         return "$left$right\n";
     }
 }
-} catch(Exception $e) {
+/*} catch(Exception $e) {
     echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
-}
+}*/
