@@ -16,7 +16,7 @@ use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 
 include 'php_action/core.php';
 
-$orderId = 38;//$_POST['orderId'];
+$orderId = $_GET['orderId'];
 
 $sql = "SELECT order_date, client_name, client_contact, sub_total, vat, total_amount, discount, grand_total, paid, due FROM orders WHERE order_id = $orderId";
 
@@ -42,14 +42,16 @@ product.product_name FROM order_item
 $orderItemResult = $connect->query($orderItemSql);
 
 /* Information for the receipt */
-while($row = $orderItemResult->fetch_array()) {     
+/*while($row = $orderItemResult->fetch_array()) {     
 
 $items =  array(new item($row[4], $row[1]));
 
-}
+}*/
+
 
 $subtotal = new item('Subtotal', $subTotal);
 $tax = new item('V.A.T', $vat);
+$Discount = new item('Discount', $discount);
 $total = new item('Total', $grandTotal, true);
 /* Date is kept the same for testing */
  $date = date('l jS \of F Y h:i:s A');
@@ -62,9 +64,9 @@ $total = new item('Total', $grandTotal, true);
 
 /* Name of shop */
 $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
-$printer -> text("Tarkunya Ventures.\n");
+$printer -> text("Tarkunya Ventures\n");
 $printer -> selectPrintMode();
-$printer -> text("Wunti Street.\n");
+$printer -> text("Wunti Street, Bauchi\n");
 $printer -> feed();
 
 /* Title of receipt */
@@ -77,9 +79,17 @@ $printer -> setJustification(Printer::JUSTIFY_LEFT);
 $printer -> setEmphasis(true);
 $printer -> text(new item('', 'N'));
 $printer -> setEmphasis(false);
-foreach ($items as $item) {
-    $printer -> text($item);
+
+while($row = $orderItemResult->fetch_array()) {     
+
+$printer ->  text(new item($row[4], $row[1]));
+
 }
+
+/*foreach ($items as $item) {
+    $printer -> text($item);
+}*/
+
 $printer -> setEmphasis(true);
 $printer -> text($subtotal);
 $printer -> setEmphasis(false);
@@ -87,6 +97,7 @@ $printer -> feed();
 
 /* Tax and total */
 $printer -> text($tax);
+$printer -> text($Discount);
 $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
 $printer -> text($total);
 $printer -> selectPrintMode();

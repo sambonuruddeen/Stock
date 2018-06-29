@@ -80,6 +80,8 @@ if($_POST) {
 	<div class="container">
 		<div class="row vertical">
 			<div class="col-md-5 col-md-offset-4">
+				<h1 style="font-family: Algerian; text-align: center;">TARKUNYA VENTURES LTD</h1>
+				<h3><center>Stock Management System</center></h3>
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<h3 class="panel-title">Please Sign in</h3>
