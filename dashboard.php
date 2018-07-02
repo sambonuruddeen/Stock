@@ -54,7 +54,7 @@ $connect->close();
 			<div class="panel panel-info">
 			<div class="panel-heading">
 				<a href="orders.php?o=manord" style="text-decoration:none;color:black;">
-					Total Orders
+					Total Sales
 					<span class="badge pull pull-right"><?php echo $countOrder; ?></span>
 				</a>
 					
