@@ -34,6 +34,7 @@ $orderItemResult = $connect->query($orderItemSql);
 			<th colspan="5">
 
 			<center>
+				Tarkunya Ventures - Invoice <br />
 				Sale Date : '.$orderDate.'
 				<center>Client Name : '.$clientName.'</center>
 				Contact : '.$clientContact.'
