@@ -17,11 +17,11 @@ $vat = $orderData[4];
 $totalAmount = $orderData[5]; 
 $discount = $orderData[6];
 $grandTotal = $orderData[7];
-$paid = $orderData[8];
+$paid = number_format($orderData[8], 2);
 $due = $orderData[9];
 
 
-$orderItemSql = "SELECT order_item.product_id, order_item.rate, order_item.quantity, order_item.total,
+$orderItemSql = "SELECT order_item.product_id, order_item.rate, order_item.item_discount, order_item.quantity, order_item.total,
 product.product_name FROM order_item
 	INNER JOIN product ON order_item.product_id = product.product_id 
  WHERE order_item.order_id = $orderId";
@@ -49,20 +49,23 @@ $orderItemResult = $connect->query($orderItemSql);
 		<tr>
 			<th>S.no</th>
 			<th>Product</th>
-			<th>Price</th>
 			<th>Quantity</th>
+			<th>Price</th>
+			<th>Discount</th>
 			<th>Total</th>
 		</tr>';
 
 		$x = 1;
 		while($row = $orderItemResult->fetch_array()) {			
-						
+			
+			$tot = $row[4] - $row[2];
 			$table .= '<tr>
 				<th>'.$x.'</th>
-				<th>'.$row[4].'</th>
+				<th>'.$row[5].'</th>
+				<th>'.$row[3].'</th>
 				<th>'.$row[1].'</th>
 				<th>'.$row[2].'</th>
-				<th>'.$row[3].'</th>
+				<th>'.$tot.'</th>
 			</tr>
 			';
 		$x++;

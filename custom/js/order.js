@@ -362,7 +362,7 @@ function printOrder(orderId = null) {
         mywindow.focus(); // necessary for IE >= 10
 
         mywindow.print();
-        mywindow.close();
+        //mywindow.close();
 				
 			}// /success function
 		}); // /ajax function to fetch the printable order
@@ -421,16 +421,22 @@ $( ).ready(function() {
 					'<input type="hidden" name="productName[]" id="productName'+count+'" value="'+response.product_id+'" />'+
 					'</div>'+
 				'</td>'+
-				'<td style="padding-left:20px;"">'+
+				'<td style="padding-left:5px;">'+
 					'<input type="text" name="rate[]" id="rate'+count+'" value="'+response.rate+'" autocomplete="off" disabled="true" class="form-control" />'+
 					'<input type="hidden" name="rateValue[]" id="rateValue'+count+'" value="'+response.rate+'" autocomplete="off" class="form-control" />'+
-				'</td style="padding-left:20px;">'+
-				'<td style="padding-left:20px;">'+
+				'</td>'+
+				'<td style="padding-left:15px;">'+
 					'<div class="form-group">'+
 					'<input type="text" name="quantity[]" id="quantity'+count+'" onkeyup="getTotal('+count+')" autocomplete="off" autofocus class="form-control" min="1" />'+
 					'</div>'+
 				'</td>'+
-				'<td style="padding-left:20px;">'+
+				'<td style="padding-left:25px;">'+
+					'<div class="form-group">'+
+					'<input type="text" name="disc[]" id="disc'+count+'" onkeyup="getDisc('+count+')" autocomplete="off" autofocus class="form-control" min="1" />'+
+					'<input type="hidden" name="discValue[]" id="discValue'+count+'" autocomplete="off" class="form-control" />'+
+					'</div>'+
+				'</td>'+
+				'<td style="padding-left:15px;">'+
 					'<input type="text" name="total[]" id="total'+count+'" autocomplete="off" class="form-control" disabled="true" />'+
 					'<input type="hidden" name="totalValue[]" id="totalValue'+count+'" autocomplete="off" class="form-control" />'+
 				'</td>'+
@@ -547,6 +553,41 @@ function getTotal(row = null) {
 		alert('no row !! please refresh the page');
 	}
 }
+
+// Discount for each row
+function getDisc(row = null){
+
+	var tableProductLength = $("#productTable tbody tr").length;
+	var disco = Number($("#disc").val());
+	var totalDiscAmount = 0;
+	for(x = 0; x < tableProductLength; x++) {
+		var tr = $("#productTable tbody tr")[x];
+		var count = $(tr).attr('id');
+		count = count.substring(3);
+
+		totalDiscAmount = Number(totalDiscAmount) + Number($("#disc"+count).val());
+
+		
+	} // /for
+	
+	totalDiscAmount = totalDiscAmount.toFixed(2);
+	
+	$("#discValue"+row).val(Number($("#disc"+row).val()));
+	//Item discount
+	$("#discount").val(totalDiscAmount);
+	
+
+	discountFunc();
+	/*if(row) {
+		var disc = Number($("#disc"+row).val());
+		disc = disc.toFixed(2);
+
+		$("#discount").val(disc);
+
+		//subAmount();
+	}*/
+}
+
 
 function subAmount() {
 	var tableProductLength = $("#productTable tbody tr").length;

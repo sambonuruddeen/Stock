@@ -85,12 +85,12 @@ if($_GET['o'] == 'add') {
 			  <table class="table" id="productTable">
 			  	<thead>
 			  		<tr>			  			
-			  			<th style="width:40%;">Product</th>
-			  			<th style="width:20%;">Price</th>
+			  			<th style="width:35%;">Product</th>
+			  			<th style="width:15%;">Price</th>
 			  			<th style="width:15%;">Quantity</th>			  			
-			  			<!--<th style="width:10%;">Discount</th>-->
+			  			<th style="width:15%;">Discount</th>
 			  			<th style="width:15%;">Total</th>
-			  			<th style="width:10%;"></th>
+			  			<th style="width:5%;"></th>
 			  		</tr>
 			  	</thead>
 			  	<tbody>
@@ -239,10 +239,10 @@ if($_GET['o'] == 'add') {
 						<th>#</th>
 						<th>Sale Date</th>
 						<th>Client Name</th>
-						<!--<th>Contact</th> -->
 						<th>Total Order Items</th>
 						<th>Paid Amount</th>
 						<th>Due Amount</th>
+						<th>Discount</th>
 						<th>Payment Status</th>
 						<th>Option</th>
 					</tr>

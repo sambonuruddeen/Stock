@@ -64,12 +64,17 @@ $total = new item('Total', $grandTotal, true);
 
 /* Name of shop */
 $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
+$printer -> setJustification(Printer::JUSTIFY_CENTER);
 $printer -> text("Tarkunya Ventures\n");
 $printer -> selectPrintMode();
 $printer -> text("Wunti Street, Bauchi\n");
 $printer -> feed();
 
+//$tux = EscposImage::load("photo_default.png", false);
+
+//$printer -> bitImage($tux);
 /* Title of receipt */
+$printer -> setJustification(Printer::JUSTIFY_LEFT);
 $printer -> setEmphasis(true);
 $printer -> text("SALES INVOICE\n");
 $printer -> setEmphasis(false);
@@ -105,7 +110,7 @@ $printer -> selectPrintMode();
 /* Footer */
 $printer -> feed(2);
 $printer -> setJustification(Printer::JUSTIFY_CENTER);
-$printer -> text("Thank you for shopping at Tarkunya Ventures\n");
+$printer -> text("Thank you for patronizing Tarkunya Ventures\n");
 $printer -> text("For Enquiries , please call 08022422356\n");
 $printer -> feed(2);
 $printer -> text($date . "\n");

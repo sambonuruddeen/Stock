@@ -2,7 +2,7 @@
 
 require_once 'core.php';
 
-$sql = "SELECT order_id, order_date, client_name, client_contact, payment_status, paid, due FROM orders WHERE order_status = 1";
+$sql = "SELECT order_id, order_date, client_name, client_contact, payment_status, paid, due, discount FROM orders WHERE order_status = 1";
 $result = $connect->query($sql);
 
 
@@ -59,9 +59,11 @@ if($result->num_rows > 0) {
  		//$row[3], 		 	
  		$itemCountRow,
  		// paid
- 		$row[5],
+ 		number_format($row[5],2),
  		// due
- 		$row[6],
+ 		number_format($row[6],2),
+ 		//discount
+ 		number_format($row[7],2),
  		$paymentStatus,
  		// button
  		$button 		

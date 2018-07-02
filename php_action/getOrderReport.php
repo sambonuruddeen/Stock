@@ -38,12 +38,12 @@ if($_POST) {
 			<th>Paid Amount</th>
 			<th>Due Amount</th>
 			<th>Discount</th>
-			<th>Grand Total</th>
+			<th>Total</th>
 		</tr>
 
 		<tr>';
 		$sn=1;
-		$totalAmount = "";
+		$totalAmount = 0;
 		while ($result = $query->fetch_assoc()) {
 			
 			$OID = $result['order_id'];
@@ -55,12 +55,12 @@ if($_POST) {
 				<td><center>'.$sn++.'</center></td>
 				<td><center>'.$result['order_date'].'</center></td>
 				<td><center>'.ucwords($result['client_name']).'</center></td>
-				<td><center>'.$result['paid'].'</center></td>
-				<td><center>'.$result['due'].'</center></td>
-				<td><center>'.$result['discount'].'</center></td>
-				<td><center>'.$result['grand_total'].'</center></td>
+				<td><center>'.number_format($result['paid'],2).'</center></td>
+				<td><center>'.number_format($result['due'],2).'</center></td>
+				<td><center>'.number_format($result['discount'],2).'</center></td>
+				<td><center>'.number_format($result['grand_total'],2).'</center></td>
 			</tr>';	
-			$totalAmount =0;
+			
 			$totalAmount += $result['grand_total'];
 		}
 		$table .= '
